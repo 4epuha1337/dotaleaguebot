@@ -1,7 +1,7 @@
 package types
 
 var AdminIDs = []int{
-    USER_TG_ID,
+    385944653,
 }
 
 var HeroMap = make(map[int]string)

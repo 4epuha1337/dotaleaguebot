@@ -1,16 +1,17 @@
 package opendota
 
 import (
-	"net/http"
-	"time"
 	"encoding/json"
 	"fmt"
 	"io"
+	"net/http"
 	"os"
+	"time"
 
 	"coefbot/types"
 )
-func GetMatch(matchID int64) (*types.Match, error){
+
+func GetMatch(matchID int64) (*types.Match, error) {
 	url := fmt.Sprintf("https://api.opendota.com/api/matches/%d", matchID)
 	client := &http.Client{Timeout: 60 * time.Second}
 	resp, err := client.Get(url)
@@ -22,7 +23,7 @@ func GetMatch(matchID int64) (*types.Match, error){
 	if resp.StatusCode != http.StatusOK {
 		return nil, fmt.Errorf(resp.Status)
 	}
-	
+
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
